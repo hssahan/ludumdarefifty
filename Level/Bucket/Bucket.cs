@@ -6,6 +6,8 @@ public class Bucket : Node2D
     [Export] public NodePath VicinityNodePath;
     [Export] public NodePath GuideLabelNodePath;
     [Export] public NodePath WaterDropParticlesNodePath;
+    [Export] public NodePath WaterSplashSoundNodePath;
+    private AudioStreamPlayer _waterSplashSound;
     private CPUParticles2D _waterDropParticles;
     private Area2D _vicinity;
     private bool _isPlayerInVicinity = false;
@@ -20,6 +22,7 @@ public class Bucket : Node2D
         _waterDropParticles = GetNode<CPUParticles2D>(WaterDropParticlesNodePath);
         _guideLabel = GetNode<Label>(GuideLabelNodePath);
         _vicinity = GetNode<Area2D>(VicinityNodePath);
+        _waterSplashSound = GetNode<AudioStreamPlayer>(WaterSplashSoundNodePath);
 
         _vicinity.Connect("body_entered", this, nameof(BodyEntered));
         _vicinity.Connect("body_exited", this, nameof(BodyExited));
@@ -47,6 +50,7 @@ public class Bucket : Node2D
     {
         _waterDropParticles.Emitting = true;
         HasWater = true;
+        _waterSplashSound.Play();
         
     }
     public void UseWater()

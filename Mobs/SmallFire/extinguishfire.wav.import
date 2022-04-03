@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/extinguishfire.wav-6bf5c6e59af12e397081909cfa8b6f34.sample"
+
+[deps]
+
+source_file="res://Mobs/SmallFire/extinguishfire.wav"
+dest_files=[ "res://.import/extinguishfire.wav-6bf5c6e59af12e397081909cfa8b6f34.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

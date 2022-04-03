@@ -34,7 +34,7 @@ public class Thunder : KinematicBody2D
 
     private void FinishThunderbolt()
     {
-        _timer.Start(_random.Next(20 / difficultyCounter, 40 / difficultyCounter));
+        _timer.Start(_random.Next(10 / difficultyCounter, 40 / difficultyCounter));
         _nextPosition = new Vector2(_random.Next(70, 150), 0);
         difficultyCounter += 1;
     }

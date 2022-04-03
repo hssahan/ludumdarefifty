@@ -4,8 +4,9 @@ using System;
 public class SmallFire : Area2D
 {
     [Export] public NodePath DamageAreaNodePath;
+    [Export] public NodePath ExtinguishFireSoundNodePath;
+    private AudioStreamPlayer _extinguishFireSound;
     private const int FullDamage = 1;
-    private readonly PackedScene _smallFireScene = (PackedScene)ResourceLoader.Load("res://Mobs/SmallFire/SmallFire.tscn");
     private Random _random;
     private bool _isPlayerInVicinity;
     private Player _player;
@@ -23,13 +24,14 @@ public class SmallFire : Area2D
         timerUntilSpread.Start(_random.Next(5, 10));
         // timerUntilSpread.Connect("timeout", this, nameof(SpreadFire));
         var damageArea = GetNode<Area2D>(DamageAreaNodePath);
+        _extinguishFireSound = GetNode<AudioStreamPlayer>(ExtinguishFireSoundNodePath);
 
         damageArea.Connect("body_entered", this, nameof(DamageAreaEntered));
         damageArea.Connect("body_exited", this, nameof(DamageAreaExited));
 
         Connect("body_entered", this, nameof(BodyEntered));
         Connect("body_exited", this, nameof(BodyExited));
-        var spawnScale = _random.Next(1,3);
+        var spawnScale = _random.Next(1, 3);
         Scale = Scale * spawnScale;
 
         _fireSpreadMultiplier = _random.Next(1, 3);
@@ -37,7 +39,7 @@ public class SmallFire : Area2D
 
     private void DamageAreaExited(Node2D node)
     {
-        if(node is Player player)
+        if (node is Player player)
         {
             _isPlayerInDamageArea = false;
         }
@@ -45,7 +47,7 @@ public class SmallFire : Area2D
 
     private void DamageAreaEntered(Node2D node)
     {
-        if(node is Player player)
+        if (node is Player player)
         {
             _isPlayerInDamageArea = true;
         }
@@ -60,6 +62,7 @@ public class SmallFire : Area2D
         {
             if (Input.IsActionJustPressed("action") && _player.HasWater)
             {
+                _extinguishFireSound.Play();
                 _player.UseWater();
                 if (!_isHit)
                 {
@@ -78,7 +81,7 @@ public class SmallFire : Area2D
         {
             Plant.TakeDamage(FullDamage * (Scale.x / 20));
         }
-        if(_isPlayerInDamageArea)
+        if (_isPlayerInDamageArea)
         {
             _player.TakeDamage(0.2f);
         }

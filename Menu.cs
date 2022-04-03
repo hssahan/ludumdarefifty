@@ -9,6 +9,8 @@ public class Menu : Node2D
     [Export] public NodePath StartMenuNodePath;
     [Export] public NodePath GameOverMenuNodePath;
     [Export] public NodePath GameOverLabelNodePath;
+    [Export] public NodePath GameOverSoundNodePath;
+    private AudioStreamPlayer _gameOverSound;
     private Button _startButton;
     private Button _restartButton;
     private Node2D _mainGame;
@@ -26,6 +28,7 @@ public class Menu : Node2D
         _restartButton = GetNode<Button>(RestartButtonNodePath);
         _gameOverMenu = GetNode<Node2D>(GameOverMenuNodePath);
         _gameOverLabel = GetNode<Label>(GameOverLabelNodePath);
+        _gameOverSound = GetNode<AudioStreamPlayer>(GameOverSoundNodePath);
 
         _startButton.Connect("pressed", this, nameof(StartGame));
         _restartButton.Connect("pressed", this, nameof(RestartGame));
@@ -54,6 +57,7 @@ public class Menu : Node2D
     public void GameOver(string timeSurvived)
     {
         GetTree().Paused = true;
+        _gameOverSound.Play();
         _startMenu.Visible = false;
         _gameOverLabel.Text = $"Time plant kept alive:\n{timeSurvived}";
         _gameOverMenu.Visible = true;
