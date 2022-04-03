@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class Plant : Area2D
 {
+    [Export] public NodePath MenuNodePath;
     [Export] public NodePath TimerNodePath;
     [Export] public List<NodePath> SpriteNodePaths;
     // [Export] public NodePath DamageAreaNodePath;
@@ -16,6 +17,7 @@ public class Plant : Area2D
     // private Area2D _damageArea;
     private Label _hpLabel;
     private float _health = 100;
+    private Menu _menu;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -36,6 +38,7 @@ public class Plant : Area2D
 
         // _damageArea = GetNode<Area2D>(DamageAreaNodePath);
         _hpLabel = GetNode<Label>(HpLabelNodePath);
+        _menu = GetNode<Menu>(MenuNodePath);
 
 
         Connect("area_entered", this, nameof(AreaEntered));
@@ -76,6 +79,10 @@ public class Plant : Area2D
     {
         _health -= damage;
         _hpLabel.Text = $"{(int)_health}";
+        if(_health <= 0)
+        {
+            _menu.GameOver();
+        }
     }
 }
 

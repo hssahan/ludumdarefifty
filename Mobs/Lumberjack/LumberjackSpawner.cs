@@ -3,17 +3,20 @@ using System;
 
 public class LumberjackSpawner : Node2D
 {
+    [Export] public NodePath GuideLabelNodePath;
     [Export] public NodePath TimerNodePath;
     private readonly PackedScene _lumberjack = (PackedScene)ResourceLoader.Load("res://Mobs/Lumberjack/Lumberjack.tscn");
     private Timer _timer;
     private Lumberjack _lastLumberjack;
+    private Label _guideLabel;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        _guideLabel = GetNode<Label>(GuideLabelNodePath);
         _timer = GetNode<Timer>(TimerNodePath);
         _timer.Connect("timeout", this, nameof(SpawnNewLumberjack));
-        _timer.Start(2);
+        _timer.Start(5);
     }
 
     private void SpawnNewLumberjack()
@@ -27,6 +30,7 @@ public class LumberjackSpawner : Node2D
         AddChild(newLumberJack);
         newLumberJack.GlobalPosition = GlobalPosition;
         _lastLumberjack = newLumberJack;
+        _guideLabel.Visible = false;
     }
 
 }
