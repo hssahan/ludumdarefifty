@@ -1,4 +1,4 @@
-# Delay the inevitable deforestation - Ludum Dare 50
+# Delay the inevitable deforestation - Ludum Dare 50 Compo entry
 
 Protect the plant and let it grow into a big beautiful tree.
 
