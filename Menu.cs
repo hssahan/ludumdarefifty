@@ -8,12 +8,13 @@ public class Menu : Node2D
     [Export] public NodePath RestartButtonNodePath;
     [Export] public NodePath StartMenuNodePath;
     [Export] public NodePath GameOverMenuNodePath;
+    [Export] public NodePath GameOverLabelNodePath;
     private Button _startButton;
     private Button _restartButton;
     private Node2D _mainGame;
     private Node2D _startMenu;
     private Node2D _gameOverMenu;
-
+    private Label _gameOverLabel;
     private readonly PackedScene _gameScene = (PackedScene)ResourceLoader.Load("res://MainGameScene.tscn");
 
     // Called when the node enters the scene tree for the first time.
@@ -24,6 +25,7 @@ public class Menu : Node2D
         _startMenu = GetNode<Node2D>(StartMenuNodePath);
         _restartButton = GetNode<Button>(RestartButtonNodePath);
         _gameOverMenu = GetNode<Node2D>(GameOverMenuNodePath);
+        _gameOverLabel = GetNode<Label>(GameOverLabelNodePath);
 
         _startButton.Connect("pressed", this, nameof(StartGame));
         _restartButton.Connect("pressed", this, nameof(RestartGame));
@@ -49,10 +51,11 @@ public class Menu : Node2D
         _gameOverMenu.Visible = false;
     }
 
-    public void GameOver()
+    public void GameOver(string timeSurvived)
     {
         GetTree().Paused = true;
         _startMenu.Visible = false;
+        _gameOverLabel.Text = $"Time plant kept alive:\n{timeSurvived}";
         _gameOverMenu.Visible = true;
     }
 }

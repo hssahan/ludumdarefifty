@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sound.ogg-68e88687754a1cf493e2cda070359680.oggstr"
+
+[deps]
+
+source_file="res://Mobs/SmallFire/sound.ogg"
+dest_files=[ "res://.import/sound.ogg-68e88687754a1cf493e2cda070359680.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

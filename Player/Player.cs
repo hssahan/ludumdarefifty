@@ -51,16 +51,20 @@ public class Player : KinematicBody2D
         {
             _movement.y = -200;
             _isJumping = true;
+            animationToPlay = $"jump-{_lastDirection}";
         }
-        if (_movement.x == 0)
+        if (_movement.x == 0 && !_isJumping)
         {
-            animationToPlay=$"idle-{_lastDirection}";
+            animationToPlay = $"idle-{_lastDirection}";
         }
-        if(_isJumping)
+        if (_isJumping)
         {
             animationToPlay = $"jump-{_lastDirection}";
         }
-        _animationPlayer.Play(animationToPlay);
+        if (animationToPlay != "")
+        {
+            _animationPlayer.Play(animationToPlay);
+        }
 
         _movement.y += 700 * delta;
 

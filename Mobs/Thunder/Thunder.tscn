@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Mobs/Thunder/Cloud.png" type="Texture" id=1]
 [ext_resource path="res://Mobs/Thunder/Thunderbolt.png" type="Texture" id=2]
 [ext_resource path="res://Mobs/Thunder/Thunder.cs" type="Script" id=3]
+[ext_resource path="res://Mobs/Thunder/thunder-sound.wav" type="AudioStream" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 20.0
@@ -170,6 +171,20 @@ tracks/7/keys = {
 "method": "FinishThunderbolt"
 } ]
 }
+tracks/8/type = "method"
+tracks/8/path = NodePath("ThunderSoundPlayer")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 3.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
 
 [node name="Thunder" type="KinematicBody2D"]
 collision_layer = 0
@@ -200,3 +215,7 @@ anims/RESET = SubResource( 3 )
 anims/hit = SubResource( 2 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="ThunderSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -21.848

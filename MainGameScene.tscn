@@ -1,10 +1,5 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://Level/Bucket/WaterRefillStation.cs" type="Script" id=1]
-[ext_resource path="res://Mobs/Lumberjack/Lumberjack.cs" type="Script" id=2]
-[ext_resource path="res://Player/Player.cs" type="Script" id=3]
-[ext_resource path="res://Mobs/Thunder/Thunder.cs" type="Script" id=4]
-[ext_resource path="res://Plant/Plant.cs" type="Script" id=5]
 [ext_resource path="res://Level/spritesheet.png" type="Texture" id=6]
 [ext_resource path="res://Mobs/Lumberjack/LumberjackSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Mobs/Lumberjack/Lumberjack.tscn" type="PackedScene" id=8]
@@ -14,15 +9,16 @@
 [ext_resource path="res://Mobs/Thunder/Thunder.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Level/Bucket/Bucket.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Level/Bucket/WaterRefillStation.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Mobs/Lumberjack/LumberjackSpawner.cs" type="Script" id=15]
 [ext_resource path="res://Plant/Plant.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Level/Bucket/Bucket.cs" type="Script" id=18]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
+
+[sub_resource type="ConvexPolygonShape2D" id=10]
 points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
@@ -268,6 +264,41 @@ points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 11/shape_one_way_margin = 0.0
 11/shapes = [  ]
 11/z_index = 0
+12/name = "spritesheet.png 12"
+12/texture = ExtResource( 6 )
+12/tex_offset = Vector2( 0, 0 )
+12/modulate = Color( 1, 1, 1, 1 )
+12/region = Rect2( 10, 11, 0, 0 )
+12/tile_mode = 0
+12/occluder_offset = Vector2( 0, 0 )
+12/navigation_offset = Vector2( 0, 0 )
+12/shape_offset = Vector2( 0, 0 )
+12/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+12/shape_one_way = false
+12/shape_one_way_margin = 0.0
+12/shapes = [  ]
+12/z_index = 0
+13/name = "spritesheet.png 13"
+13/texture = ExtResource( 6 )
+13/tex_offset = Vector2( 0, 0 )
+13/modulate = Color( 1, 1, 1, 1 )
+13/region = Rect2( 16, 8, 8, 8 )
+13/tile_mode = 0
+13/occluder_offset = Vector2( 0, 0 )
+13/navigation_offset = Vector2( 0, 0 )
+13/shape_offset = Vector2( 0, 0 )
+13/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+13/shape = SubResource( 10 )
+13/shape_one_way = false
+13/shape_one_way_margin = 1.0
+13/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 10 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+13/z_index = 0
 
 [node name="Main" type="Node2D"]
 pause_mode = 1
@@ -289,57 +320,32 @@ cell_size = Vector2( 8, 8 )
 collision_layer = 2
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 327696, 6, 0, 393221, 0, 0, 393222, 1, 0, 393223, 2, 0, 393228, 6, 0, 524298, 6, 0, 524307, 6, 0, 655367, 6, 0, 655380, 6, 0, 1376279, 6, 0 )
+tile_data = PoolIntArray( 65535, 13, 0, 131071, 13, 0, 196607, 13, 0, 262143, 13, 0, 327679, 13, 0, 393215, 13, 0, 327696, 6, 0, 458751, 13, 0, 393221, 0, 0, 393222, 1, 0, 393223, 2, 0, 393228, 6, 0, 524287, 13, 0, 458777, 13, 0, 589823, 13, 0, 524298, 6, 0, 524307, 6, 0, 524313, 13, 0, 589849, 13, 0, 655367, 6, 0, 655380, 6, 0, 655385, 13, 0, 720921, 13, 0, 786457, 13, 0, 1376279, 6, 0 )
 
-[node name="Plant" type="Area2D" parent="." instance=ExtResource( 16 )]
+[node name="Plant" parent="." instance=ExtResource( 16 )]
 position = Vector2( 117, 104 )
-script = ExtResource( 5 )
 MenuNodePath = NodePath("../..")
-TimerNodePath = NodePath("Timer")
-SpriteNodePaths = [ NodePath("v1"), NodePath("v2"), NodePath("v3"), NodePath("v4"), NodePath("v5"), NodePath("v6"), NodePath("v7") ]
-HpLabelNodePath = NodePath("HPLabel")
 
 [node name="FireNodes" type="Node2D" parent="."]
 
-[node name="Player" type="KinematicBody2D" parent="." instance=ExtResource( 17 )]
+[node name="Player" parent="." instance=ExtResource( 17 )]
 position = Vector2( 24, 84 )
-collision_mask = 3
-script = ExtResource( 3 )
-AnimationPlayerNodePath = NodePath("AnimationPlayer")
-HealthPointsLabelNodePath = NodePath("HealthPoint")
 
-[node name="Thunder" type="KinematicBody2D" parent="." instance=ExtResource( 12 )]
+[node name="Thunder" parent="." instance=ExtResource( 12 )]
 position = Vector2( 103, 0 )
-collision_layer = 0
-collision_mask = 0
-script = ExtResource( 4 )
 PlayerNodePath = NodePath("../Player")
-TimerNodePath = NodePath("Timer")
-AnimationPlayerNodePath = NodePath("AnimationPlayer")
 FireParentNodePath = NodePath("../FireNodes")
 
-[node name="Bucket" type="Node2D" parent="." instance=ExtResource( 13 )]
+[node name="Bucket" parent="." instance=ExtResource( 13 )]
 position = Vector2( 51, 44 )
-script = ExtResource( 18 )
-VicinityNodePath = NodePath("Vicinity")
-GuideLabelNodePath = NodePath("GuideLabel")
-WaterDropParticlesNodePath = NodePath("WaterDropParticles")
 
-[node name="WaterRefillStation" type="Node2D" parent="." instance=ExtResource( 14 )]
+[node name="WaterRefillStation" parent="." instance=ExtResource( 14 )]
 position = Vector2( 190, 98 )
-script = ExtResource( 1 )
-VicinityNodePath = NodePath("Vicinity")
 
-[node name="Lumberjack" type="KinematicBody2D" parent="." instance=ExtResource( 8 )]
+[node name="Lumberjack" parent="." instance=ExtResource( 8 )]
 position = Vector2( 6, 61 )
-collision_layer = 2
-script = ExtResource( 2 )
-VicinityNodePath = NodePath("Vicinity")
-DamageTakingAreaNodePath = NodePath("DamageTakingArea")
-AnimationPlayerNodePath = NodePath("AnimationPlayer")
 
-[node name="LumberjackSpawner" type="Node2D" parent="." instance=ExtResource( 7 )]
+[node name="LumberjackSpawner" parent="." instance=ExtResource( 7 )]
 position = Vector2( 0, 65 )
-script = ExtResource( 15 )
-GuideLabelNodePath = NodePath("GuideLabel")
-TimerNodePath = NodePath("Timer")
+
+[node name="GameTimer" type="Timer" parent="."]

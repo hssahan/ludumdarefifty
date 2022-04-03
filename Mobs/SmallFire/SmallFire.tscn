@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Mobs/SmallFire/spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Mobs/SmallFire/SmallFire.cs" type="Script" id=2]
+[ext_resource path="res://Mobs/SmallFire/sound.ogg" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=6]
 radius = 13.0384
@@ -52,3 +53,9 @@ playing = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 position = Vector2( 0, -3 )
 shape = SubResource( 7 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -9.613
+pitch_scale = 1.14
+autoplay = true

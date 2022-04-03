@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hack.wav-9d3895eff2995fd3fd9386a0d97db598.sample"
+
+[deps]
+
+source_file="res://Mobs/Lumberjack/hack.wav"
+dest_files=[ "res://.import/hack.wav-9d3895eff2995fd3fd9386a0d97db598.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
