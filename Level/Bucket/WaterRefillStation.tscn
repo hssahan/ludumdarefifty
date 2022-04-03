@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Level/Bucket/WaterRefillStation.cs" type="Script" id=1]
+[ext_resource path="res://pixel-font.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 18.0278
+
+[sub_resource type="DynamicFont" id=2]
+size = 3
+font_data = ExtResource( 2 )
+
+[node name="WaterRefillStation" type="Node2D"]
+script = ExtResource( 1 )
+VicinityNodePath = NodePath("Vicinity")
+
+[node name="Vicinity" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vicinity"]
+shape = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -18.0
+margin_top = -11.0
+margin_right = 134.0
+margin_bottom = 3.0
+custom_fonts/font = SubResource( 2 )
+text = "Refill Water here (Enter)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
